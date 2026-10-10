@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Менің музей паспортым — Сөйлейтін музей</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="site-nav">
+      <a href="index.html" class="site-logo">
+        <span class="site-logo-icon">🏛️</span>
+        Сөйлейтін музей
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Басты бет</a></li>
+        <li><a href="museum.html">Музей картасы</a></li>
+        <li><a href="passport.html">Менің паспортым</a></li>
+        <li><a href="teacher.html">Мұғалімге</a></li>
+      </ul>
+      <button class="ambient-toggle" data-on="false">🔈 Музей үні</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="page-title-block">
+      <h1>📘 Менің музей паспортым</h1>
+      <p>Әр кейіпкермен танысып, тапсырмаларды орындағанда — осында штамп жинайсыз</p>
+    </section>
+
+    <div class="passport-progress">
+      <div id="progressLabel">0 / 8 штамп жиналды</div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressFill" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <section class="passport-grid" id="passportGrid"></section>
+  </main>
+
+  <footer class="site-footer">
+    © Сөйлейтін музей — білім беру жобасы.
+  </footer>
+
+  <script src="data/characters.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/passport.js"></script>
+</body>
+</html>

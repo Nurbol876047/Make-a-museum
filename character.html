@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle">Кейіпкер — Сөйлейтін музей</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="site-nav">
+      <a href="index.html" class="site-logo">
+        <span class="site-logo-icon">🏛️</span>
+        Сөйлейтін музей
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Басты бет</a></li>
+        <li><a href="museum.html">Музей картасы</a></li>
+        <li><a href="passport.html">Менің паспортым</a></li>
+        <li><a href="teacher.html">Мұғалімге</a></li>
+      </ul>
+      <button class="ambient-toggle" data-on="false">🔈 Музей үні</button>
+    </nav>
+  </header>
+
+  <div class="back-link-row">
+    <a href="#" id="backToHallLink" class="back-link" data-corridor>← Залға оралу</a>
+  </div>
+
+  <main class="container">
+
+    <!-- ===================== СЦЕНА: ПОРТРЕТ + ПРОЖЕКТОР ===================== -->
+    <section class="character-stage">
+      <div class="spotlight-frame-wrap" id="spotlightWrap">
+        <div class="spotlight-beam"></div>
+        <div class="frame" id="bigPortraitFrame">
+          <div class="frame-inner" id="bigPortraitInner"></div>
+        </div>
+      </div>
+
+      <div class="character-name-title">
+        <h1 id="characterName">Кейіпкер</h1>
+        <div class="character-work" id="characterWork"></div>
+        <div class="character-author" id="characterAuthor"></div>
+      </div>
+
+      <!-- Субтитры рассказа гида -->
+      <div class="subtitles-box" id="subtitlesBox">
+        <span class="subtitle-sentence">Гид дайындалып жатыр...</span>
+      </div>
+
+      <!-- Панель управления звуком -->
+      <div class="audio-controls">
+        <button id="restartBtn" title="Қайта тыңдау">⏮ Қайта тыңдау</button>
+        <button id="playPauseBtn" class="play-pause-btn" title="Ойнату/Тоқтату">▶</button>
+        <button id="muteBtn" title="Дыбыс">🔊</button>
+      </div>
+    </section>
+
+    <div class="ornament-divider"><span class="ornament-sign">❖</span></div>
+
+    <!-- ===================== КЕЙІПКЕРДІҢ СӨЗІ + КІЛТ СӨЗДЕР ===================== -->
+    <section class="character-side-info">
+      <div class="key-phrase-block">
+        <blockquote id="keyPhrase"></blockquote>
+        <div class="keywords-row" id="keywordsRow"></div>
+      </div>
+
+      <!-- ===================== ҮЗІНДІ + ГЛОССАРИЙ ===================== -->
+      <div class="excerpt-block">
+        <h3>📜 Үзінді</h3>
+        <div class="excerpt-text" id="excerptText"></div>
+      </div>
+
+      <!-- ===================== ВИДЕО-СҰХБАТ ===================== -->
+      <div class="video-block">
+        <h3>🎬 Кейіпкермен сұхбат</h3>
+        <div class="video-frame" id="videoFrame">
+          <div class="video-placeholder">
+            <span class="video-icon">🎞️</span>
+            <span>Жақында…</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ornament-divider"><span class="ornament-sign">❖</span></div>
+
+    <!-- ===================== ҰҚСАС КЕЙІПКЕРЛЕР ===================== -->
+    <section class="related-section" id="relatedSection">
+      <h3>🔗 Ұқсас кейіпкерлер</h3>
+      <div class="related-grid" id="relatedGrid"></div>
+    </section>
+
+    <div class="ornament-divider"><span class="ornament-sign">❖</span></div>
+
+    <!-- ===================== ОҚУ САУАТТЫЛЫҒЫ ===================== -->
+    <section class="literacy-section">
+      <div class="section-title">
+        <h2>📚 Оқу сауаттылығы</h2>
+        <p>Төмендегі 3 тапсырманы орындап, музей паспортыңызға штамп жинаңыз</p>
+      </div>
+
+      <div id="taskCardsContainer"></div>
+
+      <div class="literacy-finish-row">
+        <button id="finishBtn" class="btn-primary" disabled>🏅 Аяқтау және штамп алу</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    © Сөйлейтін музей — білім беру жобасы.
+  </footer>
+
+  <!-- ===================== ШТАМП АНИМАЦИЯСЫ (overlay) ===================== -->
+  <div class="stamp-overlay" id="stampOverlay">
+    <div class="stamp-card">
+      <span class="stamp-icon">🏅</span>
+      <h3>Құттықтаймыз!</h3>
+      <p>Сіз музей паспортыңызға жаңа штамп алдыңыз.</p>
+      <a href="passport.html" class="btn-primary" data-corridor>Паспортты көру</a>
+      <div style="margin-top: 12px;">
+        <button class="btn-secondary" id="closeStampBtn">Жабу</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="data/characters.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/character.js"></script>
+</body>
+</html>

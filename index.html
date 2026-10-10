@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Сөйлейтін музей — виртуальды әдеби музей</title>
+
+  <!-- Google Fonts: онлайн болса жүктеледі, оффлайн болса — запасной шрифт қолданылады -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===================== ХЕДЕР / МЕНЮ ===================== -->
+  <header class="site-header">
+    <nav class="site-nav">
+      <a href="index.html" class="site-logo">
+        <span class="site-logo-icon">🏛️</span>
+        Сөйлейтін музей
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Басты бет</a></li>
+        <li><a href="museum.html">Музей картасы</a></li>
+        <li><a href="passport.html">Менің паспортым</a></li>
+        <li><a href="teacher.html">Мұғалімге</a></li>
+      </ul>
+      <button class="ambient-toggle" data-on="false">🔈 Музей үні</button>
+    </nav>
+  </header>
+
+  <!-- ===================== ГЛАВНЫЙ ЭКРАН ===================== -->
+  <main>
+    <section class="hero">
+      <div class="hero-emblem">🏛️</div>
+
+      <h1>Сөйлейтін музей</h1>
+      <p class="lead">
+        Цифрлық дәуірде әдеби кейіпкерлермен сұхбаттасып, оқу сауаттылығыңызды
+        дамытатын виртуальды әдеби музейге қош келдіңіз. Батырлармен, ғашықтармен
+        және классика кейіпкерлерімен бетпе-бет кездесіп, олардың сөзін тыңдаңыз.
+      </p>
+
+      <a href="museum.html" class="btn-primary" data-corridor>
+        🚪 Музейге кіру
+      </a>
+
+      <div class="ornament-divider">
+        <span class="ornament-sign">❖</span>
+      </div>
+
+      <p style="color: var(--color-text-muted); font-size: 13px; max-width: 480px;">
+        Жоба тақырыбы: «Сөйлейтін музей: цифрлық дәуірде әдеби кейіпкерлермен сұхбат
+        арқылы оқушының оқу сауаттылығын дамыту»
+      </p>
+    </section>
+
+    <!-- ===================== БАСТЫ ЭКСПОНАТТАР ===================== -->
+    <section class="featured-section container">
+      <div class="page-title-block" style="padding-top: 0;">
+        <h2>🏅 Басты экспонаттар</h2>
+        <p>Мұғалім таңдаған 5 кейіпкер — сабақта бірінші кезекте танысатын қаһармандар</p>
+      </div>
+      <div class="portraits-wall-featured" id="featuredHomeGrid"></div>
+    </section>
+  </main>
+
+  <!-- ===================== ФУТЕР ===================== -->
+  <footer class="site-footer">
+    © Сөйлейтін музей — білім беру жобасы. Барлық мәтіндер оқу мақсатында қолданылады.
+  </footer>
+
+  <script src="data/characters.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
