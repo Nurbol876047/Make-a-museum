@@ -66,9 +66,6 @@ function initCharacterPage() {
   document.getElementById("excerptText").innerHTML = highlightGlossary(character.excerpt, character.glossary);
   attachGlossaryTapHandlers();
 
-  // Блок видео-интервью
-  renderVideoBlock();
-
   // Блок "Ұқсас кейіпкерлер"
   renderRelatedSection();
 
@@ -368,17 +365,7 @@ function attachGlossaryTapHandlers() {
 }
 
 /* ============================================================
-   5. БЛОК ВИДЕО-СҮХБАТ
-   ============================================================ */
-
-function renderVideoBlock() {
-  if (!character.video) return; // заглушка "Жақында…" уже стоит в HTML по умолчанию
-  const frame = document.getElementById("videoFrame");
-  frame.innerHTML = `<video controls src="${character.video}"></video>`;
-}
-
-/* ============================================================
-   5.1. БЛОК "ҰҚСАС КЕЙІПКЕРЛЕР"
+   5. БЛОК "ҰҚСАС КЕЙІПКЕРЛЕР"
    ============================================================ */
 
 function renderRelatedSection() {

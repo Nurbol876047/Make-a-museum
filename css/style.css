@@ -13,15 +13,16 @@
    ========================================================== */
 
 :root {
-  /* Основная палитра музея */
-  --color-bg: #1c1b1f;              /* графитовый фон стен */
-  --color-bg-darker: #121114;       /* самый тёмный фон (коридоры) */
-  --color-bg-panel: #26242a;        /* панели, карточки */
+  /* Основная палитра музея — тепло-бежевые стены, золото рам */
+  --color-bg: #f6f1e4;              /* тепло-кремовый фон стен */
+  --color-bg-darker: #e3d6b8;       /* более глубокий тон (тіні, коридор) */
+  --color-bg-panel: #fffdf7;        /* панели, карточки — почти белый */
   --color-gold: #c9a24a;            /* золото рам и акцентов */
-  --color-gold-light: #e8cf8a;      /* светлое золото (подсветка) */
-  --color-gold-dark: #8a6d2f;       /* тень золота */
-  --color-text: #f1ece0;            /* основной светлый текст */
-  --color-text-muted: #b9b2a4;      /* приглушённый текст */
+  --color-gold-light: #e8cf8a;      /* светлое золото (для тёмных поверхностей) */
+  --color-gold-dark: #8a6d2f;       /* тень золота (градиенты) */
+  --color-gold-text: #7a5c1f;       /* читаемое золото для текста на светлом фоне */
+  --color-text: #2e2a22;            /* основной тёмный текст */
+  --color-text-muted: #6b6355;      /* приглушённый текст */
   --color-accent: #7a2e2e;          /* тёплый бордовый акцент */
   --color-success: #4caf7d;
   --color-error: #c0564f;
@@ -33,7 +34,7 @@
   /* Прочее */
   --radius-md: 10px;
   --radius-lg: 18px;
-  --shadow-deep: 0 20px 60px rgba(0, 0, 0, 0.55);
+  --shadow-deep: 0 20px 50px rgba(60, 45, 20, 0.2);
   --transition-slow: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -48,7 +49,7 @@ html, body {
 }
 
 body {
-  background: radial-gradient(ellipse at top, #242228 0%, var(--color-bg) 45%, var(--color-bg-darker) 100%);
+  background: radial-gradient(ellipse at top, #fffaf0 0%, var(--color-bg) 45%, var(--color-bg-darker) 100%);
   color: var(--color-text);
   font-family: var(--font-body);
   line-height: 1.6;
@@ -73,11 +74,11 @@ h1, h2, h3, h4 {
   font-weight: 700;
   letter-spacing: 0.02em;
   margin: 0 0 0.5em;
-  color: var(--color-gold-light);
+  color: var(--color-gold-text);
 }
 
 a {
-  color: var(--color-gold-light);
+  color: var(--color-gold-text);
   text-decoration: none;
 }
 
@@ -126,7 +127,7 @@ button {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(18, 17, 20, 0.86);
+  background: rgba(250, 245, 230, 0.88);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid rgba(201, 162, 74, 0.25);
 }
@@ -145,7 +146,7 @@ button {
 .site-logo {
   font-family: var(--font-display);
   font-size: 22px;
-  color: var(--color-gold-light);
+  color: var(--color-gold-text);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -172,11 +173,11 @@ button {
   transition: all 0.25s ease;
 }
 .nav-links a:hover {
-  color: var(--color-gold-light);
+  color: var(--color-gold-text);
   background: rgba(201, 162, 74, 0.1);
 }
 .nav-links a.active {
-  color: var(--color-bg-darker);
+  color: #241d0d;
   background: var(--color-gold);
   font-weight: 600;
 }
@@ -185,7 +186,7 @@ button {
 .ambient-toggle {
   border: 1px solid rgba(201, 162, 74, 0.4);
   background: transparent;
-  color: var(--color-gold-light);
+  color: var(--color-gold-text);
   border-radius: 999px;
   padding: 7px 14px;
   font-size: 13px;
@@ -283,7 +284,7 @@ button {
   border-radius: 999px;
   border: 1px solid rgba(201, 162, 74, 0.5);
   background: transparent;
-  color: var(--color-gold-light);
+  color: var(--color-gold-text);
   font-weight: 600;
   font-size: 14px;
   transition: all 0.25s ease;
@@ -321,7 +322,7 @@ button {
 
 .hall-card {
   position: relative;
-  background: linear-gradient(160deg, var(--color-bg-panel), #1a181c);
+  background: linear-gradient(160deg, var(--color-bg-panel), #efe4c9);
   border: 1px solid rgba(201, 162, 74, 0.25);
   border-radius: var(--radius-lg);
   padding: 34px 28px;
@@ -505,7 +506,7 @@ button {
 .plaque .plaque-name {
   font-family: var(--font-display);
   font-size: 18px;
-  color: var(--color-gold-light);
+  color: var(--color-gold-text);
   margin-bottom: 2px;
 }
 .plaque .plaque-work {
@@ -523,7 +524,7 @@ button {
 .corridor-fade {
   position: fixed;
   inset: 0;
-  background: #000;
+  background: #2a2015;
   z-index: 9999;
   opacity: 0;
   pointer-events: none;
@@ -603,7 +604,7 @@ button {
   min-height: 70px;
   text-align: center;
   padding: 16px 20px;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(201, 162, 74, 0.08);
   border: 1px solid rgba(201, 162, 74, 0.2);
   border-radius: var(--radius-md);
   font-size: 16px;
@@ -614,7 +615,7 @@ button {
   opacity: 0.45;
 }
 .subtitles-box .subtitle-sentence.current {
-  color: var(--color-gold-light);
+  color: var(--color-gold-text);
   opacity: 1;
   font-weight: 500;
 }
@@ -635,7 +636,7 @@ button {
 .audio-controls button {
   border: 1px solid rgba(201, 162, 74, 0.4);
   background: var(--color-bg-panel);
-  color: var(--color-gold-light);
+  color: var(--color-gold-text);
   border-radius: 999px;
   padding: 10px 18px;
   font-size: 14px;
@@ -673,7 +674,7 @@ button {
 .key-phrase-block blockquote {
   font-family: var(--font-display);
   font-size: clamp(22px, 3.4vw, 30px);
-  color: var(--color-gold-light);
+  color: var(--color-gold-text);
   margin: 0;
   line-height: 1.4;
   white-space: pre-line;
@@ -692,7 +693,7 @@ button {
   padding: 7px 16px;
   border-radius: 999px;
   border: 1px solid rgba(201, 162, 74, 0.4);
-  color: var(--color-gold-light);
+  color: var(--color-gold-text);
   font-size: 13px;
   background: rgba(201, 162, 74, 0.06);
 }
@@ -721,7 +722,7 @@ button {
   text-decoration-thickness: 1px;
   cursor: help;
   position: relative;
-  color: var(--color-gold-light);
+  color: var(--color-gold-text);
   font-style: normal;
 }
 .glossary-word .tooltip {
@@ -729,9 +730,10 @@ button {
   bottom: 125%;
   left: 50%;
   transform: translateX(-50%) translateY(6px);
-  background: #0c0b0d;
+  background: var(--color-bg-panel);
   border: 1px solid var(--color-gold);
   color: var(--color-text);
+  box-shadow: 0 8px 20px rgba(60, 45, 20, 0.18);
   padding: 8px 12px;
   border-radius: 8px;
   font-size: 13px;
@@ -746,42 +748,6 @@ button {
 .glossary-word:hover .tooltip {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
-}
-
-/* Блок видео-интервью */
-.video-block {
-  background: var(--color-bg-panel);
-  border: 1px solid rgba(201, 162, 74, 0.2);
-  border-radius: var(--radius-lg);
-  padding: 28px 30px;
-  text-align: center;
-}
-.video-frame {
-  margin: 14px auto 0;
-  max-width: 520px;
-  border: 10px solid var(--color-gold-dark);
-  border-radius: 8px;
-  background: #000;
-  aspect-ratio: 16/9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.video-frame video {
-  width: 100%;
-  height: 100%;
-}
-.video-placeholder {
-  color: var(--color-text-muted);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-.video-placeholder .video-icon {
-  font-size: 34px;
-  opacity: 0.6;
 }
 
 /* -------------------- Блок "Ұқсас кейіпкерлер" -------------------- */
@@ -842,7 +808,7 @@ button {
 .related-card .related-info h4 {
   font-size: 15px;
   margin-bottom: 3px;
-  color: var(--color-gold-light);
+  color: var(--color-gold-text);
 }
 .related-card .related-info p {
   font-size: 12.5px;
@@ -877,7 +843,7 @@ button {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--color-bg-darker);
+  color: #241d0d;
   background: var(--color-gold);
   border-radius: 999px;
   padding: 4px 12px;
@@ -929,7 +895,7 @@ button {
 .open-answer-textarea {
   width: 100%;
   min-height: 110px;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.035);
   border: 1px solid rgba(201, 162, 74, 0.3);
   border-radius: 10px;
   color: var(--color-text);
@@ -1014,7 +980,7 @@ button {
 .progress-bar-track {
   height: 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.08);
   overflow: hidden;
   margin-top: 10px;
 }
@@ -1085,7 +1051,7 @@ button {
   font-size: 12px;
   color: var(--color-text-muted);
   text-align: left;
-  background: rgba(0,0,0,0.25);
+  background: rgba(0,0,0,0.04);
   border-radius: 8px;
   padding: 8px 10px;
   max-height: 70px;
@@ -1144,7 +1110,7 @@ button {
   color: var(--color-text-muted);
 }
 .back-link:hover {
-  color: var(--color-gold-light);
+  color: var(--color-gold-text);
 }
 
 /* Скроллбар в музейных тонах (не критично, но приятно) */
