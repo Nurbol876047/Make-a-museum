@@ -131,7 +131,8 @@ const CHARACTERS = [
       { id: "bala_akkeme", reason: "екеуі де арманшыл, жалғыз ауыл баласы" },
       { id: "askhat", reason: "соғыс жылдарындағы ауыл балаларының тағдыры" },
     ],
-    video: null,
+    video: "assets/video/tortai.mp4",
+    topQuestion: "Сенің ең үлкен арманың не?",
   },
   {
     id: "askhat",
@@ -198,12 +199,14 @@ const CHARACTERS = [
       { id: "kozha", reason: "соғыстан кейінгі ауыл баласының тағдыры" },
       { id: "tortai", reason: "ауылдағы жетім баланың арманы мен жалғыздығы" },
     ],
-    video: null,
+    video: "assets/video/askhat.mp4",
+    topQuestion: "Соғыс жылдарында қиындыққа қалай төздің?",
   },
   {
     id: "kozha",
     name: "Қожа",
     hall: "balalyk",
+    featured: true,
     work: "«Менің атым Қожа» повесі",
     author: "Бердібек Соқпақбаев",
     portrait: "assets/portraits/kozha.jpg",
@@ -249,7 +252,8 @@ const CHARACTERS = [
       { id: "askhat", reason: "соғыстан кейінгі ауыл өмірінің қиындығы" },
       { id: "bala_akkeme", reason: "қиялшыл, тентек ауыл баласының мінезі" },
     ],
-    video: null,
+    video: "assets/video/kozha.mp4",
+    topQuestion: "Тентектігің саған қандай сабақ берді?",
   },
   {
     id: "bala_akkeme",
@@ -375,7 +379,8 @@ const CHARACTERS = [
       { id: "bayansulu", reason: "махаббатқа адалдық" },
       { id: "kozykorpesh", reason: "сүйгені үшін қайғы-қасірет шеккен ғашық жан" },
     ],
-    video: null,
+    video: "assets/video/kyzzhibek.mp4",
+    topQuestion: "Сен үшін нағыз махаббат дегеніміз не?",
   },
   {
     id: "tolegen",
@@ -436,7 +441,8 @@ const CHARACTERS = [
       { id: "kozykorpesh", reason: "ғашықтығы жолында қаза тапқан жас жігіт бейнесі" },
       { id: "bayansulu", reason: "махаббат жолында кездескен кедергілер" },
     ],
-    video: null,
+    video: "assets/video/tolegen.mp4",
+    topQuestion: "Жібекке деген сезіміңді қалай сипаттар едің?",
   },
   {
     id: "bayansulu",
@@ -493,6 +499,7 @@ const CHARACTERS = [
     id: "kozykorpesh",
     name: "Қозы Көрпеш",
     hall: "gashyktyk",
+    featured: true,
     work: "«Қозы Көрпеш — Баян сұлу» дастаны",
     author: "Халық жыршылары (ғашықтық дастаны)",
     portrait: "assets/portraits/kozykorpesh.jpg",
@@ -533,7 +540,8 @@ const CHARACTERS = [
       { id: "tolegen", reason: "ғашықтығы жолында қаза тапқан жас жігіт бейнесі" },
       { id: "bayansulu", reason: "«Қозы Көрпеш — Баян сұлу» дастанындағы ғашық жұп" },
     ],
-    video: null,
+    video: "assets/video/kozykorpesh.mp4",
+    topQuestion: "Ғашықтар үшін серт неге соншалықты маңызды?",
   },
 
   // ---------------------------------------------------------
@@ -603,7 +611,8 @@ const CHARACTERS = [
       { id: "zhirenshe", reason: "ақылмен билікке жеткен қарапайым адам" },
       { id: "aldarkose", reason: "әділетсіздікке тапқырлықпен қарсы тұру" },
     ],
-    video: null,
+    video: "assets/video/ayazbi.mp4",
+    topQuestion: "Күшті, өктем адамға қалай жауап бересің?",
   },
   {
     id: "zhirenshe",
@@ -695,7 +704,8 @@ const CHARACTERS = [
       { id: "kozhanasyr", reason: "әзіл-оспақ арқылы шындықты жеткізу" },
       { id: "ayazbi", reason: "әлсіздің күштіні ақылмен жеңуі" },
     ],
-    video: null,
+    video: "assets/video/aldarkose.mp4",
+    topQuestion: "Сараң адамға қалай сабақ бересің?",
   },
   {
     id: "kozhanasyr",
@@ -802,7 +812,8 @@ const CHARACTERS = [
       { id: "alpamys", reason: "ел қорғаған ерлік пен адалдық" },
       { id: "ersayin", reason: "жаумен шайқаста көрсеткен қайсарлық" },
     ],
-    video: null,
+    video: "assets/video/kobylandy.mp4",
+    topQuestion: "Елің үшін нені құрбан етуге дайынсың?",
   },
   {
     id: "alpamys",
@@ -1066,7 +1077,8 @@ const CHARACTERS = [
       { id: "shuga", reason: "ескі салт-дәстүрге қарсы шынайы адамгершілік" },
       { id: "botagoz", reason: "жаңа өмірге, әділеттілікке ұмтылу" },
     ],
-    video: null,
+    video: "assets/video/abai.mp4",
+    topQuestion: "Жастарға қандай өсиет айтар едің?",
   },
   {
     id: "shuga",
@@ -1320,7 +1332,8 @@ const CHARACTERS = [
       { id: "alice", reason: "қиял мен балалық тазалықтың бейнесі" },
       { id: "mowgli", reason: "екі әлем арасындағы ізденіс" },
     ],
-    video: null,
+    video: "assets/video/littleprince.mp4",
+    topQuestion: "Достық пен жауапкершілік туралы не айтасың?",
   },
   {
     id: "robinson",
@@ -1524,6 +1537,16 @@ const CHARACTERS = [
       { id: "littleprince", reason: "қиял мен балалық тазалықтың бейнесі" },
       { id: "tomsawyer", reason: "қиялы мол, тапқыр бала бейнесі" },
     ],
-    video: null,
+    video: "assets/video/alice.mp4",
+    topQuestion: "Ғажайыптар еліндегі ең қызық сәт қандай болды?",
   },
 ];
+
+// Браузерде бұл файл жай <script> ретінде жүктеледі — сондықтан HALLS бен
+// CHARACTERS жоғарыда жай ғана global айнымалылар болады. Ал api/chat.js
+// (Node/Vercel ортасында) осы файлды require() арқылы оқу үшін, бар болса,
+// CommonJS экспорты да қосамыз. Браузерде `module` анықталмаған болғандықтан
+// бұл блок іске қосылмайды және ештеңені өзгертпейді.
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { HALLS, CHARACTERS };
+}

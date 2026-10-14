@@ -36,14 +36,40 @@
 
     <!-- Зал карточкалары JS арқылы data/characters.js (HALLS) негізінде толтырылады -->
     <section class="halls-grid" id="hallsGrid"></section>
+
+    <div class="ornament-divider"><span class="ornament-sign">❖</span></div>
+
+    <!-- ===================== МУЗЕЙ ГИДІ ЧАТЫ ===================== -->
+    <section class="guide-chat-section" id="guideChatSection">
+      <div class="chat-section-title">
+        <h2>💬 Музей гидінен сұраңыз</h2>
+        <p>Музей туралы немесе кейіпкерлер туралы қалаған сұрағыңызды қойыңыз.</p>
+      </div>
+
+      <div class="chat-widget" id="chatWidget">
+        <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
+        <form class="chat-input-row" id="chatForm">
+          <input
+            type="text"
+            id="chatInput"
+            class="chat-input"
+            placeholder="Мәселен: ерлік туралы айт..."
+            autocomplete="off"
+            maxlength="200"
+          />
+          <button type="submit" class="chat-send-btn" aria-label="Жіберу">➤</button>
+        </form>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     © Сөйлейтін музей — білім беру жобасы.
   </footer>
 
-  <script src="data/characters.js"></script>
-  <script src="js/common.js"></script>
-  <script src="js/museum.js"></script>
+  <script src="data/characters.js?v=2"></script>
+  <script src="js/common.js?v=2"></script>
+  <script src="js/museum.js?v=2"></script>
+  <script src="js/chat.js?v=2"></script>
 </body>
 </html>

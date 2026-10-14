@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "museum-static",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8743"],
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["scripts/dev_server.js", "8743"],
       "port": 8743
     }
   ]

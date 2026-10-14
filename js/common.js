@@ -228,6 +228,54 @@ function getHallIconSvg(hallId) {
 }
 
 /* -------------------- Переход между страницами "по коридору" -------------------- */
+// Экспонат сілтемесі (character.html?id=...) кейіпкердің video өрісі
+// толтырылған болса — алдымен толық экранда дыбысымен бейне-жауабын
+// көрсетеді, содан КЕЙІН ҒАНА экспонат бетіне өтеді. Бұлай істейміз,
+// себебі character.html ашылған бойда дикторлық дауыс (narration audio)
+// өз бетінше қосылып кетеді — бейне мен диктор бір мезгілде ойналса,
+// екі дауыс қабаттасып, бірін-бірі басып кетеді.
+function getCorridorVideoCharacter(link, href) {
+  if (link.dataset.skipVideoIntro === "true") return null;
+  const match = href.match(/character\.html\?id=([^&]+)/);
+  if (!match || typeof CHARACTERS === "undefined") return null;
+  const character = CHARACTERS.find((c) => c.id === decodeURIComponent(match[1]));
+  return character && character.video ? character : null;
+}
+
+function playExhibitVideoIntro(character, onDone) {
+  let overlay = document.querySelector(".exhibit-video-overlay");
+  if (!overlay) {
+    overlay = document.createElement("div");
+    overlay.className = "exhibit-video-overlay";
+    document.body.appendChild(overlay);
+  }
+
+  overlay.innerHTML = `
+    <div class="exhibit-video-box">
+      <video class="exhibit-video-el" src="${character.video}" autoplay playsinline></video>
+      <button type="button" class="exhibit-video-skip">Өткізіп жіберу ⏭</button>
+    </div>`;
+  requestAnimationFrame(() => overlay.classList.add("active"));
+
+  const videoEl = overlay.querySelector(".exhibit-video-el");
+  let finished = false;
+  const finish = () => {
+    if (finished) return;
+    finished = true;
+    overlay.classList.remove("active");
+    setTimeout(() => {
+      overlay.innerHTML = "";
+    }, 400);
+    onDone();
+  };
+
+  // Файл әлі жүктелмеген/табылмаған болса (404) — тоқтап қалмай, бірден
+  // экспонат бетіне өтеді.
+  videoEl.addEventListener("ended", finish);
+  videoEl.addEventListener("error", finish);
+  overlay.querySelector(".exhibit-video-skip").addEventListener("click", finish);
+}
+
 // Создаёт плавное затемнение перед переходом по ссылке.
 function initCorridorTransitions() {
   let fadeEl = document.querySelector(".corridor-fade");
@@ -238,14 +286,27 @@ function initCorridorTransitions() {
   }
 
   document.querySelectorAll("a[data-corridor]").forEach((link) => {
+    if (link.dataset.corridorBound) return; // карточкалар қайта рендерленгенде қайта тіркелмеу үшін
+    link.dataset.corridorBound = "true";
+
     link.addEventListener("click", (e) => {
       const href = link.getAttribute("href");
       if (!href || href.startsWith("#")) return;
       e.preventDefault();
-      fadeEl.classList.add("active");
-      setTimeout(() => {
-        window.location.href = href;
-      }, 420);
+
+      const navigate = () => {
+        fadeEl.classList.add("active");
+        setTimeout(() => {
+          window.location.href = href;
+        }, 420);
+      };
+
+      const videoCharacter = getCorridorVideoCharacter(link, href);
+      if (videoCharacter) {
+        playExhibitVideoIntro(videoCharacter, navigate);
+      } else {
+        navigate();
+      }
     });
   });
 }

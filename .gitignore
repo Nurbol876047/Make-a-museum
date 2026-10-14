@@ -1,0 +1,9 @@
+# Құпия кілттер мен жергілікті баптаулар — ешқашан git-ке қосылмауы керек
+.env
+.env.local
+.env.*.local
+
+# Vercel CLI жергілікті файлдары
+.vercel
+
+node_modules/
