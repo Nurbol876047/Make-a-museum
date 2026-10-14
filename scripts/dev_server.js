@@ -119,7 +119,9 @@ const server = http.createServer((req, res) => {
   serveStatic(req, res, parsedUrl.pathname);
 });
 
-const port = Number(process.argv[2]) || 8743;
+// Render/Heroku секілді хостингтер портты PORT env арқылы береді;
+// локалда бұрынғыдай команда жолындағы аргументті пайдаланамыз.
+const port = Number(process.env.PORT) || Number(process.argv[2]) || 8743;
 server.listen(port, () => {
   console.log(`Dev server running at http://localhost:${port}`);
   console.log(
