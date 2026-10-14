@@ -252,12 +252,29 @@ function playExhibitVideoIntro(character, onDone) {
 
   overlay.innerHTML = `
     <div class="exhibit-video-box">
-      <video class="exhibit-video-el" src="${character.video}" autoplay playsinline></video>
       <button type="button" class="exhibit-video-skip">Өткізіп жіберу ⏭</button>
     </div>`;
   requestAnimationFrame(() => overlay.classList.add("active"));
 
-  const videoEl = overlay.querySelector(".exhibit-video-el");
+  const box = overlay.querySelector(".exhibit-video-box");
+
+  // Фонда алдын-ала жылытылған <video> элементі бар болса — соны
+  // пайдаланамыз (ол буферленген, бірден ойнайды). Болмаса — жаңасын
+  // жасаймыз (мыс., адам видео жүктеліп үлгермей жатып тым тез бассе).
+  let videoEl = preloadedVideoEls.get(character.id);
+  if (videoEl) {
+    preloadedVideoEls.delete(character.id);
+  } else {
+    videoEl = document.createElement("video");
+    videoEl.src = character.video;
+  }
+  videoEl.className = "exhibit-video-el";
+  videoEl.muted = false;
+  videoEl.playsInline = true;
+  videoEl.currentTime = 0;
+  box.insertBefore(videoEl, box.firstChild);
+  videoEl.play().catch(() => {});
+
   let finished = false;
   const finish = () => {
     if (finished) return;
@@ -274,6 +291,36 @@ function playExhibitVideoIntro(character, onDone) {
   videoEl.addEventListener("ended", finish);
   videoEl.addEventListener("error", finish);
   overlay.querySelector(".exhibit-video-skip").addEventListener("click", finish);
+}
+
+// Алдын-ала жүктелген <video> элементтерін characterId бойынша сақтаймыз.
+// Оверлей ашылғанда дәл осы, бұрыннан буферленген элемент қолданылады —
+// сол себепті видео желіден қайта сұралмай, бірден ойнай бастайды.
+// (Элементтерге сілтеме сақтамасақ, браузер оларды иесіз деп танып,
+// жүктеуді доғарып тастауы мүмкін.)
+const preloadedVideoEls = new Map();
+
+// Дәліз карточкалары (data-corridor) көрінген бойда, оларға сәйкес
+// кіріспе-видеоларды фонда алдын-ала жүктеп қоямыз.
+function preloadCorridorVideos() {
+  if (typeof CHARACTERS === "undefined") return;
+
+  const idsOnPage = new Set();
+  document.querySelectorAll("a[data-corridor]").forEach((link) => {
+    const match = (link.getAttribute("href") || "").match(/character\.html\?id=([^&]+)/);
+    if (match) idsOnPage.add(decodeURIComponent(match[1]));
+  });
+
+  CHARACTERS.filter((c) => c.video && idsOnPage.has(c.id)).forEach((c) => {
+    if (preloadedVideoEls.has(c.id)) return;
+    const video = document.createElement("video");
+    video.preload = "auto";
+    video.muted = true;
+    video.playsInline = true;
+    video.src = c.video;
+    video.load();
+    preloadedVideoEls.set(c.id, video);
+  });
 }
 
 // Создаёт плавное затемнение перед переходом по ссылке.
@@ -309,6 +356,13 @@ function initCorridorTransitions() {
       }
     });
   });
+
+  // Карточкалар жоғарыда дәл осы функция арқылы тіркелгендіктен, видеоларды
+  // алдын-ала жүктеуді де осында қосамыз — беттің өз скрипті (index.js,
+  // hall.js, т.б.) карточкаларды JS арқылы рендерлеп болғаннан КЕЙІН
+  // initCorridorTransitions()-ты қайта шақырады, сол сәтте сілтемелер
+  // DOM-да нақты тұрады.
+  preloadCorridorVideos();
 }
 
 document.addEventListener("DOMContentLoaded", () => {

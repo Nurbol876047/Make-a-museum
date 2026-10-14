@@ -52,6 +52,10 @@ const MIME = {
   ".ico": "image/x-icon",
 };
 
+// Медиафайлдар (видео/аудио/сурет) өзгермейтіндіктен браузерде кэштеле алады;
+// HTML/JS/CSS дамыту кезінде ескіріп қалмауы үшін кэшсіз қалады.
+const CACHEABLE_EXT = new Set([".mp4", ".mp3", ".jpg", ".jpeg", ".png", ".svg", ".ico"]);
+
 function serveStatic(req, res, pathname) {
   let filePath = path.join(ROOT, decodeURIComponent(pathname));
   if (pathname === "/" || pathname === "") filePath = path.join(ROOT, "index.html");
@@ -67,11 +71,40 @@ function serveStatic(req, res, pathname) {
       return;
     }
     const ext = path.extname(filePath).toLowerCase();
+    const contentType = MIME[ext] || "application/octet-stream";
+    const cacheHeaders = CACHEABLE_EXT.has(ext)
+      ? { "Cache-Control": "public, max-age=604800" }
+      : { "Cache-Control": "no-store, no-cache, must-revalidate", Pragma: "no-cache", Expires: "0" };
+
+    // Range қолдауы (видео/аудио үшін өте маңызды): оның арқасында браузер
+    // файлдың кез келген бөлігін — мысалы, MP4-тің соңындағы moov атомын —
+    // бүкіл файлды жүктемей-ақ сұрай алады, видео бірден ойнай бастайды.
+    const range = req.headers.range;
+    if (range) {
+      const match = /^bytes=(\d*)-(\d*)$/.exec(range);
+      const start = match && match[1] ? parseInt(match[1], 10) : 0;
+      const end = match && match[2] ? parseInt(match[2], 10) : stats.size - 1;
+      if (!match || start > end || end >= stats.size) {
+        res.writeHead(416, { "Content-Range": `bytes */${stats.size}` });
+        res.end();
+        return;
+      }
+      res.writeHead(206, {
+        "Content-Type": contentType,
+        "Content-Length": end - start + 1,
+        "Content-Range": `bytes ${start}-${end}/${stats.size}`,
+        "Accept-Ranges": "bytes",
+        ...cacheHeaders,
+      });
+      fs.createReadStream(filePath, { start, end }).pipe(res);
+      return;
+    }
+
     res.writeHead(200, {
-      "Content-Type": MIME[ext] || "application/octet-stream",
-      "Cache-Control": "no-store, no-cache, must-revalidate",
-      Pragma: "no-cache",
-      Expires: "0",
+      "Content-Type": contentType,
+      "Content-Length": stats.size,
+      "Accept-Ranges": "bytes",
+      ...cacheHeaders,
     });
     fs.createReadStream(filePath).pipe(res);
   });
