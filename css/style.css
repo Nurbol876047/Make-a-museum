@@ -652,15 +652,13 @@ button {
   border: 1px solid rgba(201, 162, 74, 0.2);
   border-radius: var(--radius-md);
   font-size: 16px;
-  color: var(--color-text-muted);
+  color: var(--color-text);
 }
 .subtitles-box .subtitle-sentence {
-  transition: color 0.3s ease, opacity 0.3s ease;
-  opacity: 0.45;
+  transition: color 0.3s ease;
 }
 .subtitles-box .subtitle-sentence.current {
   color: var(--color-gold-text);
-  opacity: 1;
   font-weight: 500;
 }
 .subtitles-box .subtitle-sentence {
