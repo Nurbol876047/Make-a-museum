@@ -5,5 +5,8 @@
   "description": "Сөйлейтін музей — виртуалды әдеби музей (статикалық сайт + api/chat.js serverless функциясы)",
   "engines": {
     "node": ">=18"
+  },
+  "scripts": {
+    "start": "node scripts/dev_server.js"
   }
 }
