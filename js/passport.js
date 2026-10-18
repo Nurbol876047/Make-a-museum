@@ -35,6 +35,7 @@ function renderPassportPage() {
         <a class="passport-stamp-card" href="character.html?id=${character.id}" style="text-decoration:none; color:inherit;" data-corridor>
           <div class="stamp-portrait">${getPortraitInnerHTML(character)}</div>
           <h4>${character.name}</h4>
+          <div class="stamp-author">${character.author}</div>
           <div class="stamp-date">🏅 ${formatDate(record.completedAt)}</div>
           ${
             record.openAnswer
@@ -49,6 +50,7 @@ function renderPassportPage() {
       <a class="passport-stamp-card" href="character.html?id=${character.id}" style="text-decoration:none; color:inherit;" data-corridor>
         <div class="stamp-portrait">${getPortraitInnerHTML(character)}</div>
         <h4>${character.name}</h4>
+        <div class="stamp-author">${character.author}</div>
         <div class="stamp-date">${hall ? hall.title : ""}</div>
       </a>
     `;

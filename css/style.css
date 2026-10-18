@@ -638,7 +638,9 @@ button {
 }
 .character-name-title .character-author {
   color: var(--color-gold);
-  font-size: 13px;
+  font-size: clamp(16px, 2.2vw, 20px);
+  font-weight: 600;
+  margin-top: 4px;
 }
 
 /* Субтитры рассказа гида */
@@ -1083,6 +1085,11 @@ button {
 .passport-stamp-card h4 {
   font-size: 15px;
   margin-bottom: 4px;
+}
+.passport-stamp-card .stamp-author {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
 }
 .passport-stamp-card .stamp-date {
   font-size: 11px;

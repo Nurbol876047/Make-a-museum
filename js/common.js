@@ -75,7 +75,7 @@ function initAmbientToggle() {
 
   ambientAudioEl = new Audio("assets/audio/ambient.mp3");
   ambientAudioEl.loop = true;
-  ambientAudioEl.volume = 0.35;
+  ambientAudioEl.volume = 0.55;
 
   const wasOn = localStorage.getItem(AMBIENT_STORAGE_KEY) === "true";
   btn.setAttribute("data-on", wasOn ? "true" : "false");
