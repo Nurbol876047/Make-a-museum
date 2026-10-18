@@ -2,7 +2,7 @@
   "name": "soylejtin-muzei",
   "private": true,
   "version": "1.0.0",
-  "description": "Сөйлейтін музей — виртуалды әдеби музей (статикалық сайт + api/chat.js serverless функциясы)",
+  "description": "Сөйлейтін мұражай — виртуалды әдеби мұражай (статикалық сайт + api/chat.js serverless функциясы)",
   "engines": {
     "node": ">=18"
   },

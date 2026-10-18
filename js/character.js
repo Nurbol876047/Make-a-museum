@@ -41,8 +41,8 @@ function initCharacterPage() {
   const id = getCharacterIdFromUrl();
   character = CHARACTERS.find((c) => c.id === id) || CHARACTERS[0];
 
-  document.title = `${character.name} — Сөйлейтін музей`;
-  document.getElementById("pageTitle").textContent = `${character.name} — Сөйлейтін музей`;
+  document.title = `${character.name} — Сөйлейтін мұражай`;
+  document.getElementById("pageTitle").textContent = `${character.name} — Сөйлейтін мұражай`;
   document.getElementById("backToHallLink").setAttribute("href", `hall.html?hall=${character.hall}`);
 
   // Портрет в большой рамке + бейдж "Басты экспонат", если это персонаж из подборки учителя
