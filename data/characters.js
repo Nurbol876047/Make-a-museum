@@ -262,7 +262,7 @@ const CHARACTERS = [
     work: "«Жетім» әңгімесі",
     author: "Мұхтар Әуезов",
     portrait: "assets/portraits/kasym.jpg",
-    audio: null,
+    audio: "assets/audio/kasym.mp3",
     keyPhrase: "Жазығым — қуарып қалған жетімдігім бе?", // ТЕКСЕРУ — түпнұсқа мәтінмен салыстыру қажет
     keywords: ["жетімдік", "қатыгездік", "теңсіздік", "аяушылық", "қайғы"],
     narration:

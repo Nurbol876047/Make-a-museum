@@ -167,7 +167,11 @@ function onAudioTimeUpdate() {
 
 function play() {
   if (mode === null) {
-    mode = character.audio && !audioBroken ? "audio" : kkVoice ? "speech" : "timer";
+    // kkVoice болмаса да "speech" режимін қолданып көреміз — браузер
+    // kk-KZ дауысы жоқ болса, өзінің әдепкі дауысымен оқиды (акцентпен
+    // болса да дыбыс шығады). Нағыз сәтсіздік болса, speakFrom() ішіндегі
+    // watchdog/onerror бізді өзі "timer" режиміне ауыстырады.
+    mode = character.audio && !audioBroken ? "audio" : "speechSynthesis" in window ? "speech" : "timer";
   }
 
   if (mode === "audio") {
@@ -285,11 +289,40 @@ function speakFrom(i) {
   utter.lang = "kk-KZ";
   if (kkVoice) utter.voice = kkVoice;
   utter.volume = isMuted ? 0 : 1;
-  utter.onstart = () => highlightSentence(i);
+
+  // Кейбір құрылғыларда/браузерлерде speechSynthesis бар болып көрінгенімен,
+  // дауыс қозғалтқышы нақты қосылмайды — сонда speak() үнсіз ешнәрсе
+  // істемейді (onstart та, onerror да шақырылмайды). Бұл "күзетшi" таймер
+  // шамамен 1.5 секундта дыбыс басталмаса, сенімді таймер режиміне ауысады.
+  let started = false;
+  const watchdog = setTimeout(() => {
+    if (!started) fallbackToTimerMode(i);
+  }, 1500);
+
+  utter.onstart = () => {
+    started = true;
+    clearTimeout(watchdog);
+    highlightSentence(i);
+  };
   utter.onend = () => {
+    clearTimeout(watchdog);
     if (isPlaying) speakFrom(i + 1);
   };
+  utter.onerror = () => {
+    clearTimeout(watchdog);
+    fallbackToTimerMode(i);
+  };
   window.speechSynthesis.speak(utter);
+}
+
+// Дауыстап оқу сәтсіз аяқталғанда (қате немесе дыбыс мүлде басталмағанда)
+// пайдаланушыға хабарлап, сенімді таймерлік субтитр режиміне ауысамыз.
+function fallbackToTimerMode(fromIndex) {
+  if (mode === "timer") return;
+  mode = "timer";
+  window.speechSynthesis.cancel();
+  showToast("Құрылғыда дауыстап оқу қолжетімсіз — тек субтитр көрсетіледі");
+  if (isPlaying) startTimerSentence(fromIndex);
 }
 
 /* ---------- Автозапуск при открытии модуля ---------- */
