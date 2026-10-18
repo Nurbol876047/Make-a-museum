@@ -37,8 +37,8 @@ function renderHallPage() {
   const hall = HALLS.find((h) => h.id === hallId) || HALLS[0];
   const charactersInHall = CHARACTERS.filter((c) => c.hall === hall.id);
 
-  document.title = `${hall.title} — Сөйлейтін мұражай`;
-  document.getElementById("pageTitle").textContent = `${hall.title} — Сөйлейтін мұражай`;
+  document.title = `${hall.title} — Әдеби цифрлық мұражай`;
+  document.getElementById("pageTitle").textContent = `${hall.title} — Әдеби цифрлық мұражай`;
   document.getElementById("hallIcon").innerHTML = getHallIconSvg(hall.id);
   document.getElementById("hallTitle").textContent = hall.title;
   document.getElementById("hallDescription").textContent = hall.description;
