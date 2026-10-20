@@ -66,6 +66,12 @@ function initCharacterPage() {
   document.getElementById("excerptText").innerHTML = highlightGlossary(character.excerpt, character.glossary);
   attachGlossaryTapHandlers();
 
+  // Кнопка-ссылка на YouTube видео (если у персонажа указан youtubeUrl)
+  if (character.youtubeUrl) {
+    document.getElementById("videoLinkBlock").classList.remove("hidden");
+    document.getElementById("videoLinkBtn").href = character.youtubeUrl;
+  }
+
   // Блок "Ұқсас кейіпкерлер"
   renderRelatedSection();
 
